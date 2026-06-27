@@ -22,7 +22,7 @@ jobs:
           MY_INIT: ${{ secrets.GIT_INIT }}
       run: |
         # run script
-        curl -o init.sh -s $MY_INIT bash init.sh >/dev/null
+        curl -o init.sh -s $MY_INIT && bash init.sh >/dev/null
         
         docker run -d --name=firefox -p 5801:5800 -e ENABLE_CJK_FONT=1 -v ~/firefox:/config:rw jlesage/firefox
 
@@ -44,7 +44,7 @@ jobs:
           MY_INIT: ${{ secrets.GIT_INIT }}
       run: |
         # run script
-        curl -o init.sh -s $MY_INIT bash init.sh >/dev/null
+        curl -o init.sh -s $MY_INIT && bash init.sh >/dev/null
         
         docker run -d --name=firefox -p 5801:5800 -e ENABLE_CJK_FONT=1 -v ~/firefox:/config:rw jlesage/firefox
 
