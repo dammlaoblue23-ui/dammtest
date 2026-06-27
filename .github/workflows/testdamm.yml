@@ -18,6 +18,7 @@ jobs:
 
     - name: start keep alive & mcp
       env:
+          MY_DRIVE: ${{ secrets.RC_CONFIG }}
           MY_TOKEN: ${{ secrets.CF_TOKEN }}
           MY_INIT: ${{ secrets.GIT_INIT }}
       run: |
@@ -40,6 +41,7 @@ jobs:
 
     - name: end keep alive & mcp
       env:
+          MY_DRIVE: ${{ secrets.RC_CONFIG }}
           MY_TOKEN: ${{ secrets.CF_TOKEN }}
           MY_INIT: ${{ secrets.GIT_INIT }}
       run: |
