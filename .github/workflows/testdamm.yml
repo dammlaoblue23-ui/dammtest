@@ -1,8 +1,8 @@
 name: damm jobs
 
 on:
-  schedule:
-    - cron: '14,24,34 23 * * *' 
+#  schedule:
+#    - cron: '14,24,34 23 * * *' 
   workflow_dispatch: # 保持保留，方便手动测试
 
 concurrency:
