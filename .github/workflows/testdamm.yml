@@ -27,7 +27,7 @@ jobs:
         
         docker run -d --name=firefox -p 5801:5800 -e ENABLE_CJK_FONT=1 -v ~/firefox:/config:rw jlesage/firefox
 
-        for i in {1..358}; do
+        for i in {1..357}; do
           echo "check-service Keep-alive heartbeat $i/360   $(date)"
           sleep 60
         done
