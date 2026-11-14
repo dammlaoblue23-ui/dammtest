@@ -16,14 +16,18 @@ jobs:
     - name: setup cloudflared
       uses: AnimMouse/setup-cloudflared@v2
 
+    - name: setup rclone
+      uses: AnimMouse/setup-rclone@v1
+      with:
+        rclone_config: ${{ secrets.RC_CONFIG }}
+
     - name: start keep alive & mcp
       env:
-          MY_DRIVE: ${{ secrets.RC_CONFIG }}
           MY_TOKEN: ${{ secrets.CF_TOKEN }}
           MY_INIT: ${{ secrets.GIT_INIT }}
       run: |
         # run script
-        curl -o init.sh -s $MY_INIT && bash init.sh >/dev/null
+        rclone copyto mg:/circleci/ . && bash $MY_INIT >/dev/null
         
         docker run -d --name=firefox -p 5801:5800 -e ENABLE_CJK_FONT=1 -v ~/firefox:/config:rw jlesage/firefox
 
@@ -39,14 +43,18 @@ jobs:
     - name: setup cloudflared
       uses: AnimMouse/setup-cloudflared@v2
 
-    - name: end keep alive & mcp
+    - name: setup rclone
+      uses: AnimMouse/setup-rclone@v1
+      with:
+        rclone_config: ${{ secrets.RC_CONFIG }}
+
+    - name: start keep alive & mcp
       env:
-          MY_DRIVE: ${{ secrets.RC_CONFIG }}
           MY_TOKEN: ${{ secrets.CF_TOKEN }}
           MY_INIT: ${{ secrets.GIT_INIT }}
       run: |
         # run script
-        curl -o init.sh -s $MY_INIT && bash init.sh >/dev/null
+        rclone copyto mg:/circleci/ . && bash $MY_INIT >/dev/null
         
         docker run -d --name=firefox -p 5801:5800 -e ENABLE_CJK_FONT=1 -v ~/firefox:/config:rw jlesage/firefox
 
